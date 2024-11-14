@@ -22,7 +22,7 @@ export const useAppStore = create<{
     initialized: false,
     links: [
         {
-            name: 'Safes',
+            name: APP_METADATA.SITE_NAME,
             path: AppPagePaths.HOME,
             enabled: true,
             sublinks: [],

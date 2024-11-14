@@ -38,20 +38,7 @@ export enum IconIds {
     TRANSACTION = 'carbon:text-align-center',
     CONTRACT = 'carbon:cics-program',
 
-    // apps
-    SAFE = 'SAFE',
-    REVOKE = 'REVOKE',
-    DEFI_SAVER = 'DEFI_SAVER',
-    MORPHO = 'MORPHO',
-    AAVE = 'AAVE',
-    COWSWAP = 'COWSWAP',
-    ONEINCH = '1INCH',
-    ONCHAINDEN = 'ONCHAINDEN',
-    DEBANK = 'DEBANK',
-    ZERION = 'ZERION',
-    ZAPPER = 'ZAPPER',
-
-    // farside
+    // etfs
     RANK = 'carbon:trophy',
     SCROLL = 'hugeicons:mouse-scroll-01',
     LOADING = 'line-md:loading-twotone-loop',

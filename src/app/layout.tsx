@@ -14,20 +14,20 @@ import { Toaster } from 'react-hot-toast'
 const font = Nunito_Sans({ weight: ['400', '700'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: APP_METADATA.SITE_NAME,
+    // title: `${APP_METADATA.SITE_NAME} | ${APP_METADATA.SITE_AUTHOR}`,
     description: APP_METADATA.SITE_DESCRIPTION,
-    applicationName: APP_METADATA.SITE_NAME,
+    applicationName: `${APP_METADATA.SITE_NAME} | ${APP_METADATA.SITE_AUTHOR}`,
     metadataBase: new URL(APP_METADATA.SITE_URL),
     manifest: '/manifest.json',
     appleWebApp: {
-        title: APP_METADATA.SITE_NAME,
+        title: `${APP_METADATA.SITE_NAME} | ${APP_METADATA.SITE_AUTHOR}`,
         capable: true,
         statusBarStyle: 'black-translucent',
     },
     openGraph: {
         type: 'website',
-        title: APP_METADATA.SITE_NAME,
-        siteName: APP_METADATA.SITE_NAME,
+        title: `${APP_METADATA.SITE_NAME} | ${APP_METADATA.SITE_AUTHOR}`,
+        siteName: `${APP_METADATA.SITE_NAME} | ${APP_METADATA.SITE_AUTHOR}`,
         description: APP_METADATA.SITE_DESCRIPTION,
         url: APP_METADATA.SITE_URL,
         images: '/opengraph-image',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         site: APP_METADATA.SOCIALS.X,
-        title: APP_METADATA.SITE_NAME,
+        title: `${APP_METADATA.SITE_NAME} | ${APP_METADATA.SITE_AUTHOR}`,
         description: APP_METADATA.SITE_DESCRIPTION,
         images: '/opengraph-image',
     },
