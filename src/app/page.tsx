@@ -1,5 +1,6 @@
 'use client'
 
+import LinkWithIcon from '@/components/common/LinkWithIcon'
 import PageWrapper from '@/components/common/PageWrapper'
 import { bip0039Words } from '@/config/bip-0039-words.config'
 import { useRotBip39Store } from '@/stores/rot-bip-39.store'
@@ -16,7 +17,12 @@ export default function Page() {
             <div className="flex flex-col gap-3 text-sm">
                 <p className="text-base font-bold underline decoration-inactive underline-offset-2">1. Color code</p>
                 <div className="flex flex-col gap-0.5 pl-2">
-                    <p className="text-inactive">a. Index of word in BIP 39 list</p>
+                    <div className="flex flex-wrap items-center gap-1">
+                        <p className="text-inactive">a. Index of word in</p>
+                        <LinkWithIcon href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">
+                            <p className="text-nowrap">BIP 39 list</p>
+                        </LinkWithIcon>
+                    </div>
                     <p className="text-default">b. Word</p>
                     <div className="flex flex-wrap items-center gap-x-2">
                         <p className="text-primary">c. Rot on word index in BIP 39 list</p>
