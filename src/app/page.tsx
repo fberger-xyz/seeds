@@ -85,7 +85,9 @@ export default function Page() {
             <div className="flex gap-2">
                 <p className="text-base font-bold underline decoration-inactive underline-offset-2">3. Output</p>
                 ⬇️
-                <p className="hidden text-inactive lg:flex">in A4 format</p>
+                <p className="text-inactive">
+                    in A4 format<span className="pl-1 lg:hidden">See on desktop</span>
+                </p>
             </div>
             <div
                 ref={A4Ref}
