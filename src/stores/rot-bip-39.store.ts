@@ -1,26 +1,31 @@
+import { BIP39DisplayOption } from '@/enums'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
 export const useRotBip39Store = create<{
-    shiftToRotWordInList: number
-    shiftToRotWordLetters: number
-    onlyShowFirst4Letters: 'Yes' | 'No'
+    currentPage: number
+    shiftToNWordsInList: number
+    shiftToNLetters: number
+    onlyShowFirst4Letters: BIP39DisplayOption
     actions: {
-        setShiftToRotWordInList: (n: number) => void
-        setShiftToRotWordLetters: (n: number) => void
-        setOnlyShowFirst4Letters: (option: 'Yes' | 'No') => void
+        setShiftToNWordsInList: (n: number) => void
+        setShiftToNLetters: (n: number) => void
+        setOnlyShowFirst4Letters: (option: BIP39DisplayOption) => void
+        setCurrentPage: (currentPage: number) => void
     }
 }>()(
     devtools(
         // persist(
         (set) => ({
-            shiftToRotWordInList: 1,
-            shiftToRotWordLetters: 1,
-            onlyShowFirst4Letters: 'Yes',
+            currentPage: 1,
+            shiftToNWordsInList: 1,
+            shiftToNLetters: 1,
+            onlyShowFirst4Letters: BIP39DisplayOption.ONLY_FIRST_4_LETTERS,
             actions: {
-                setShiftToRotWordInList: (shiftToRotWordInList) => set(() => ({ shiftToRotWordInList })),
-                setShiftToRotWordLetters: (shiftToRotWordLetters) => set(() => ({ shiftToRotWordLetters })),
+                setShiftToNWordsInList: (shiftToNWordsInList) => set(() => ({ shiftToNWordsInList })),
+                setShiftToNLetters: (shiftToNLetters) => set(() => ({ shiftToNLetters })),
                 setOnlyShowFirst4Letters: (onlyShowFirst4Letters) => set(() => ({ onlyShowFirst4Letters })),
+                setCurrentPage: (currentPage) => set(() => ({ currentPage })),
             },
         }),
         { name: 'rot-bip-0039-store' },

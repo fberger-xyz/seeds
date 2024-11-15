@@ -31,7 +31,7 @@ const config: Config = {
                 '2xs': '0.5rem',
             },
             lineHeight: {
-                2: '0.6rem',
+                2: '0.5rem',
                 // line-height: .75rem /* 12px */;
             },
         },
