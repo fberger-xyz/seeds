@@ -33,7 +33,7 @@ export default function HeaderButton(props: { pagePath: AppPagePaths; disabled?:
                 'bg-light-hover': isCurrentPath(),
             })}
         >
-            <p className={cn({ 'text-primary': isCurrentPath(), 'text-inactive': !isCurrentPath() })}>{link?.name ?? 'Not found'}</p>
+            <p className={cn('capitalize', { 'text-primary': isCurrentPath(), 'text-inactive': !isCurrentPath() })}>{link?.name ?? 'Not found'}</p>
         </LinkWrapper>
     )
 }

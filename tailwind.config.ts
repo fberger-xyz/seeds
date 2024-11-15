@@ -15,6 +15,25 @@ const config: Config = {
                 'very-light-hover': 'var(--color-very-light-hover)',
                 'light-border': 'var(--color-light-border)',
             },
+            width: {
+                a4: '210mm',
+            },
+            maxWidth: {
+                a4: '210mm',
+            },
+            height: {
+                a4: '297mm',
+            },
+            maxHeight: {
+                a4: '297mm',
+            },
+            fontSize: {
+                '2xs': '0.5rem',
+            },
+            lineHeight: {
+                2: '0.6rem',
+                // line-height: .75rem /* 12px */;
+            },
         },
     },
     plugins: [],
