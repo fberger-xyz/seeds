@@ -35,7 +35,7 @@ export default function Page() {
                 <div className="flex flex-col gap-1 text-sm">
                     <p className="text-base font-bold text-secondary">Inputs</p>
                     <div className="flex flex-wrap items-center gap-x-2 pl-2 text-xs md:text-sm">
-                        <p>&#x2022; Number of shift to apply on word position in list =</p>
+                        <p>&#x2022; Number of shift to apply on word position in list {'=>'}</p>
                         <input
                             type="number"
                             pattern="[0-9]*"
@@ -54,7 +54,7 @@ export default function Page() {
                         <p className="text-xs text-inactive">[ min -2048 ; default 0 ; max 2048 ]</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-x-2 pl-2 text-xs md:text-sm">
-                        <p>&#x2022; Number of shift to apply on letters of the word =</p>
+                        <p>&#x2022; Number of shift to apply on letters of the word {'=>'}</p>
                         <input
                             type="number"
                             pattern="[0-9]*"
