@@ -94,7 +94,7 @@ export default function Page() {
                 ref={A4Ref}
                 className="group relative flex h-a4 w-full max-w-a4 flex-wrap gap-x-0.5 overflow-scroll border border-light-hover p-1 text-2xs leading-2"
             >
-                <div className="absolute right-2 top-2 hidden w-fit items-center justify-end gap-2 rounded-md p-1 text-base backdrop-blur-md group-hover:flex">
+                <div className="absolute right-2 top-2 hidden w-fit items-center justify-end gap-2 rounded-md p-2 text-base backdrop-blur-md group-hover:flex">
                     <Button onClickFn={() => actions.setCurrentPage(1)} disabled={currentPage === 1} text="Prev" />
                     <p>
                         <span className="text-primary">{currentPage}</span> / 2
