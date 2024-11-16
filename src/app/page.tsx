@@ -66,7 +66,7 @@ export default function Page() {
                 <p className="text-base font-bold underline decoration-inactive underline-offset-2">2. Options</p>
                 <div className="flex flex-col gap-0.5 pl-2">
                     <div className="flex flex-wrap items-center gap-x-2">
-                        <p>Only display first 4 letters</p>
+                        <p>Display words</p>
                         {[BIP39DisplayOption.ONLY_FIRST_4_LETTERS, BIP39DisplayOption.FULL].map((option) => (
                             <button
                                 key={option}
@@ -86,7 +86,8 @@ export default function Page() {
                 <p className="text-base font-bold underline decoration-inactive underline-offset-2">3. Output</p>
                 ⬇️
                 <p className="text-inactive">
-                    in A4 format<span className="pl-1 lg:hidden">See on desktop</span>
+                    <span className="hidden lg:flex">in A4 format</span>
+                    <span className="lg:hidden">See on desktop</span>
                 </p>
             </div>
             <div
@@ -95,11 +96,13 @@ export default function Page() {
             >
                 <div className="absolute right-2 top-2 hidden w-fit items-center justify-end gap-2 rounded-md p-1 text-base backdrop-blur-md group-hover:flex">
                     <Button onClickFn={() => actions.setCurrentPage(1)} disabled={currentPage === 1} text="Prev" />
-                    <p>{currentPage} / 2</p>
+                    <p>
+                        <span className="text-primary">{currentPage}</span> / 2
+                    </p>
                     <Button onClickFn={() => actions.setCurrentPage(2)} disabled={currentPage === 2} text="Next" />
                 </div>
                 <div className="w-full">
-                    <p className="text-xs">
+                    <p className="mb-1 text-xs">
                         BIP39 words with rot on word position in list (shift={shiftToNWordsInList}) coupled with rot on letter index in alphabet
                         (shift={shiftToNLetters})
                     </p>
