@@ -19,17 +19,21 @@ export default function Page() {
     return (
         <PageWrapper className="gap-3">
             <div className="flex flex-col gap-3 text-sm">
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">1. How to read</p>
+                <p className="text-base font-bold underline decoration-inactive underline-offset-2">Context</p>
+                <div className="flex flex-wrap items-center gap-1">
+                    <p>This tools aims to help you encrypt your seed phrase with a basic</p>
+                    <LinkWithIcon href="https://en.wikipedia.org/wiki/Substitution_cipher">
+                        <p className="text-nowrap">substitution cipher method</p>
+                    </LinkWithIcon>
+                </div>
+                <p className="text-base font-bold underline decoration-inactive underline-offset-2">How to read</p>
                 <div className="flex flex-col gap-0.5 pl-2">
                     <div className="flex flex-wrap items-center gap-1">
-                        <p className="text-inactive">a. Index of word in</p>
-                        <LinkWithIcon href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">
-                            <p className="text-nowrap text-inactive hover:text-default">BIP39 list</p>
-                        </LinkWithIcon>
+                        <p className="text-inactive">a. Position of the word</p>
                     </div>
                     <p className="text-default">b. Word</p>
                     <div className="flex flex-wrap items-center gap-x-2">
-                        <p className="text-primary">c. Rot on word position in BIP39 list</p>
+                        <p className="text-primary">c. Shift on word position</p>
                         <input
                             type="number"
                             onChange={(e) => {
@@ -41,12 +45,12 @@ export default function Page() {
                             value={shiftToNWordsInList}
                             min={-2048}
                             max={2048}
-                            className="w-12 rounded-sm bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
+                            className="h-5 w-12 rounded-sm bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
                         />
                         <p className="text-inactive">[ min -2048 ; default 0 ; max 2048 ]</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-x-2">
-                        <p className="text-secondary">d. Rot on letters in alphabet</p>
+                        <p className="text-secondary">d. Shift on letters of the word</p>
                         <input
                             type="number"
                             onChange={(e) => {
@@ -58,12 +62,12 @@ export default function Page() {
                             value={shiftToNLetters}
                             min={-26}
                             max={26}
-                            className="w-12 rounded-sm bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
+                            className="h-5 w-12 rounded-sm bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
                         />
                         <p className="text-inactive">[ min -26 ; default 0 ; max 26 ]</p>
                     </div>
                 </div>
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">2. Display</p>
+                <p className="text-base font-bold underline decoration-inactive underline-offset-2">Display options</p>
                 <div className="flex flex-col gap-0.5 pl-2">
                     <div className="flex flex-wrap items-center gap-x-2">
                         <p>Words</p>
@@ -82,9 +86,8 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <div className="flex gap-2">
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">3. Output</p>
-                ⬇️
+            <div className="flex items-center gap-2">
+                <p className="text-base font-bold underline decoration-inactive underline-offset-2">Output ⬇️</p>
                 <p className="text-inactive">
                     <span className="hidden lg:flex">in A4 format</span>
                     <span className="lg:hidden">See on desktop</span>
@@ -103,7 +106,8 @@ export default function Page() {
                 </div>
                 <div className="w-full">
                     <p className="mb-1 text-xs">
-                        BIP39 with rot on word position in list (shift={shiftToNWordsInList}) coupled with rot on letter index in alphabet (shift=
+                        BIP39 words with shift={shiftToNWordsInList} on word position in list coupled with shift={} on letter index in alphabet
+                        (shift=
                         {shiftToNLetters})
                     </p>
                 </div>

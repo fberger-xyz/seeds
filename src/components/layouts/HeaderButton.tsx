@@ -12,7 +12,7 @@ export default function HeaderButton(props: { pagePath: AppPagePaths; disabled?:
     const { links } = useAppStore()
     const pathname = usePathname()
     const isCurrentPath = () => {
-        if (props.pagePath === '/') return pathname === props.pagePath
+        if (props.pagePath === AppPagePaths.HOME) return pathname === props.pagePath
         else return pathname.startsWith(props.pagePath)
     }
     let link: undefined | InterfaceAppLink = undefined
