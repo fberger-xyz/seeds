@@ -2,7 +2,6 @@
 
 import Button from '@/components/common/Button'
 import IconWrapper from '@/components/common/IconWrapper'
-import LinkWithIcon from '@/components/common/LinkWithIcon'
 import LinkWrapper from '@/components/common/LinkWrapper'
 import PageWrapper from '@/components/common/PageWrapper'
 import { bip0039Words } from '@/config/bip-0039-words.config'
@@ -20,22 +19,23 @@ export default function Page() {
     const displayWord = (word: string) => word.slice(0, onlyShowFirst4Letters === BIP39DisplayOption.ONLY_FIRST_4_LETTERS ? 4 : word.length)
     return (
         <PageWrapper className="gap-3">
-            <div className="flex flex-col gap-3 text-sm">
-                <p className="text-base font-bold text-secondary">Context</p>
-                <div className="flex flex-wrap items-center gap-1">
-                    <p>This tools aims to help you encrypt your seed phrase with a basic</p>
-                    <LinkWithIcon href="https://en.wikipedia.org/wiki/Substitution_cipher">
-                        <p className="text-nowrap">substitution cipher method</p>
-                    </LinkWithIcon>
-                </div>
-                <p className="text-base font-bold text-secondary">How to read below output</p>
-                <div className="flex flex-col gap-0.5 pl-2">
+            <div className="flex flex-col gap-5 text-sm">
+                {/*  */}
+                <div className="flex flex-col text-sm">
+                    <p className="text-base font-bold text-secondary">Context</p>
                     <div className="flex flex-wrap items-center gap-1">
-                        <p className="text-inactive">a. Position of the word</p>
+                        <p>This page aims to help you encrypt your seed phrase with a simple substitution cipher method</p>
+                        <LinkWrapper href="https://en.wikipedia.org/wiki/Substitution_cipher" target="_blank">
+                            <IconWrapper icon={IconIds.CARBON_HELP} className="mb-1 size-4 cursor-alias text-inactive hover:text-primary" />
+                        </LinkWrapper>
                     </div>
-                    <p className="text-default">b. Word</p>
-                    <div className="flex flex-wrap items-center gap-x-2">
-                        <p className="text-primary">c. Shift on word position =</p>
+                </div>
+
+                {/* 2 */}
+                <div className="flex flex-col gap-1 text-sm">
+                    <p className="text-base font-bold text-secondary">Inputs</p>
+                    <div className="flex flex-wrap items-center gap-x-2 pl-2 text-xs md:text-sm">
+                        <p>&#x2022; Number of shift to apply on word position in list =</p>
                         <input
                             type="number"
                             pattern="[0-9]*"
@@ -49,12 +49,12 @@ export default function Page() {
                             value={shiftToNWordsInList}
                             min={-2048}
                             max={2048}
-                            className="h-5 w-12 rounded-sm bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
+                            className="h-5 w-12 rounded-md bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
                         />
-                        <p className="text-inactive">[ min -2048 ; default 0 ; max 2048 ]</p>
+                        <p className="text-xs text-inactive">[ min -2048 ; default 0 ; max 2048 ]</p>
                     </div>
-                    <div className="flex flex-wrap items-center gap-x-2">
-                        <p className="text-secondary">d. Shift on letters of the word =</p>
+                    <div className="flex flex-wrap items-center gap-x-2 pl-2 text-xs md:text-sm">
+                        <p>&#x2022; Number of shift to apply on letters of the word =</p>
                         <input
                             type="number"
                             pattern="[0-9]*"
@@ -68,40 +68,45 @@ export default function Page() {
                             value={shiftToNLetters}
                             min={-26}
                             max={26}
-                            className="h-5 w-12 rounded-sm bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
+                            className="h-5 w-12 rounded-md bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
                         />
-                        <p className="text-inactive">[ min -26 ; default 0 ; max 26 ]</p>
+                        <p className="text-xs text-inactive">[ min -26 ; default 0 ; max 26 ]</p>
+                    </div>
+                    <div className="flex flex-col gap-0.5 pl-2">
+                        <div className="flex flex-wrap items-center gap-x-1.5 text-xs md:text-sm">
+                            <p>&#x2022; Display words</p>
+                            {[BIP39DisplayOption.FULL, BIP39DisplayOption.ONLY_FIRST_4_LETTERS].map((option) => (
+                                <button
+                                    key={option}
+                                    className={cn('px-2 bg-very-light-hover rounded-md hover:bg-light-hover', {
+                                        'font-bold': onlyShowFirst4Letters === option,
+                                        'opacity-40': onlyShowFirst4Letters !== option,
+                                    })}
+                                    onClick={() => actions.setOnlyShowFirst4Letters(option)}
+                                >
+                                    {option}
+                                </button>
+                            ))}
+                            <LinkWrapper href="https://cryptotag.io/blog/why-do-i-only-need-the-first-4-letters-of-a-bip39-seed/" target="_blank">
+                                <IconWrapper icon={IconIds.CARBON_HELP} className="size-4 cursor-alias text-inactive hover:text-primary" />
+                            </LinkWrapper>
+                        </div>
                     </div>
                 </div>
-                <p className="text-base font-bold text-secondary">Display options</p>
-                <div className="flex flex-col gap-0.5 pl-2">
-                    <div className="flex flex-wrap items-center gap-x-1.5">
-                        <p>For words</p>
-                        {[BIP39DisplayOption.FULL, BIP39DisplayOption.ONLY_FIRST_4_LETTERS].map((option) => (
-                            <button
-                                key={option}
-                                className={cn('py-0.5 px-2 bg-very-light-hover rounded-md hover:bg-light-hover', {
-                                    'font-bold': onlyShowFirst4Letters === option,
-                                    'opacity-40': onlyShowFirst4Letters !== option,
-                                })}
-                                onClick={() => actions.setOnlyShowFirst4Letters(option)}
-                            >
-                                {option}
-                            </button>
-                        ))}
-                        <LinkWrapper href="https://cryptotag.io/blog/why-do-i-only-need-the-first-4-letters-of-a-bip39-seed/" target="_blank">
-                            <IconWrapper icon={IconIds.CARBON_HELP} className="h-3.5 w-3.5 cursor-alias text-inactive hover:text-primary" />
-                        </LinkWrapper>
-                    </div>
+
+                {/* 3 */}
+                <div className="flex items-center gap-2">
+                    <p className="text-base font-bold text-secondary">
+                        Output <span className="text-sm">⬇️</span>
+                    </p>
+                    <p className="text-inactive">
+                        <span className="hidden lg:flex">in A4 format</span>
+                        <span className="lg:hidden">Better on desktop</span>
+                    </p>
                 </div>
             </div>
-            <div className="flex items-center gap-2">
-                <p className="text-base font-bold text-secondary">Output to save ⬇️</p>
-                <p className="text-inactive">
-                    <span className="hidden lg:flex">in A4 format</span>
-                    <span className="lg:hidden">See on desktop</span>
-                </p>
-            </div>
+
+            {/* pdf */}
             <div
                 ref={A4Ref}
                 className="group relative flex h-a4 w-full max-w-a4 flex-wrap gap-x-0.5 overflow-scroll border border-light-hover p-1 text-2xs leading-2"
@@ -115,8 +120,14 @@ export default function Page() {
                 </div>
                 <div className="w-full">
                     <p className="mb-1 text-xs">
-                        BIP39 words with shift={shiftToNWordsInList} on word position in list coupled with shift={shiftToNLetters} on letters of
-                        alphabet
+                        BIP39 words with {shiftToNWordsInList} shift{Math.abs(shiftToNWordsInList) > 1 ? 's' : ''} on word position in list coupled
+                        with {shiftToNLetters} shift{Math.abs(shiftToNLetters) > 1 ? 's' : ''} on letters of alphabet
+                    </p>
+                    <p className="mb-1 w-fit border border-default p-1 text-2xs">
+                        <span className="px-0.5 text-inactive">index</span>
+                        <span className="px-0.5 text-default">BIP39 word</span>
+                        <span className="px-0.5 text-primary">{shiftToNWordsInList} shift in list</span>
+                        <span className="px-0.5 text-secondary">{shiftToNLetters} on letters</span>
                     </p>
                 </div>
                 {bip0039Words.slice((currentPage - 1) * 1024, currentPage * 1024).map((word, wordIndex) => (

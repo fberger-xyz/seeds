@@ -3,7 +3,7 @@ import { AppThemes, IconIds } from '@/enums'
 export const APP_METADATA = {
     SITE_AUTHOR: 'fberger',
     SITE_NAME: 'seeds',
-    SITE_DESCRIPTION: 'Encrypt your seed phrase with a basic substitution cipher method',
+    SITE_DESCRIPTION: 'Encrypt your seed phrase with a simple substitution cipher method',
     SITE_URL: 'https://seeds.fberger.xyz',
     SOCIALS: {
         X: 'fberger_xyz',
