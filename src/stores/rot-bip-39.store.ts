@@ -20,7 +20,7 @@ export const useRotBip39Store = create<{
             currentPage: 1,
             shiftToNWordsInList: 1,
             shiftToNLetters: 1,
-            onlyShowFirst4Letters: BIP39DisplayOption.ONLY_FIRST_4_LETTERS,
+            onlyShowFirst4Letters: BIP39DisplayOption.FULL,
             actions: {
                 setShiftToNWordsInList: (shiftToNWordsInList) => set(() => ({ shiftToNWordsInList })),
                 setShiftToNLetters: (shiftToNLetters) => set(() => ({ shiftToNLetters })),

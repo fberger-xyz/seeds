@@ -1,11 +1,13 @@
 'use client'
 
 import Button from '@/components/common/Button'
+import IconWrapper from '@/components/common/IconWrapper'
 import LinkWithIcon from '@/components/common/LinkWithIcon'
+import LinkWrapper from '@/components/common/LinkWrapper'
 import PageWrapper from '@/components/common/PageWrapper'
 import { bip0039Words } from '@/config/bip-0039-words.config'
 import { toastStyle } from '@/config/toasts.config'
-import { BIP39DisplayOption } from '@/enums'
+import { BIP39DisplayOption, IconIds } from '@/enums'
 import { useRotBip39Store } from '@/stores/rot-bip-39.store'
 import { cn } from '@/utils'
 import { rotBip0039WordIndex, rotN } from '@/utils/rot.util'
@@ -19,25 +21,27 @@ export default function Page() {
     return (
         <PageWrapper className="gap-3">
             <div className="flex flex-col gap-3 text-sm">
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">Context</p>
+                <p className="text-base font-bold text-secondary">Context</p>
                 <div className="flex flex-wrap items-center gap-1">
                     <p>This tools aims to help you encrypt your seed phrase with a basic</p>
                     <LinkWithIcon href="https://en.wikipedia.org/wiki/Substitution_cipher">
                         <p className="text-nowrap">substitution cipher method</p>
                     </LinkWithIcon>
                 </div>
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">How to read</p>
+                <p className="text-base font-bold text-secondary">How to read below output</p>
                 <div className="flex flex-col gap-0.5 pl-2">
                     <div className="flex flex-wrap items-center gap-1">
                         <p className="text-inactive">a. Position of the word</p>
                     </div>
                     <p className="text-default">b. Word</p>
                     <div className="flex flex-wrap items-center gap-x-2">
-                        <p className="text-primary">c. Shift on word position</p>
+                        <p className="text-primary">c. Shift on word position =</p>
                         <input
                             type="number"
+                            pattern="[0-9]*"
                             onChange={(e) => {
                                 const n = parseFloat(e.target.value)
+                                if (isNaN(n)) return
                                 if (n < -2048 || n > 2048) return
                                 actions.setShiftToNWordsInList(Math.floor(n))
                                 toast.success(`Shift ${n} word${Math.abs(n) > 1 ? 's' : ''}`, { style: toastStyle })
@@ -50,11 +54,13 @@ export default function Page() {
                         <p className="text-inactive">[ min -2048 ; default 0 ; max 2048 ]</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-x-2">
-                        <p className="text-secondary">d. Shift on letters of the word</p>
+                        <p className="text-secondary">d. Shift on letters of the word =</p>
                         <input
                             type="number"
+                            pattern="[0-9]*"
                             onChange={(e) => {
                                 const n = parseFloat(e.target.value)
+                                if (isNaN(n)) return
                                 if (n < -26 && n > 26) return
                                 actions.setShiftToNLetters(Math.floor(n))
                                 toast.success(`Shift ${n} letter${Math.abs(n) > 1 ? 's' : ''}`, { style: toastStyle })
@@ -67,11 +73,11 @@ export default function Page() {
                         <p className="text-inactive">[ min -26 ; default 0 ; max 26 ]</p>
                     </div>
                 </div>
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">Display options</p>
+                <p className="text-base font-bold text-secondary">Display options</p>
                 <div className="flex flex-col gap-0.5 pl-2">
-                    <div className="flex flex-wrap items-center gap-x-2">
-                        <p>Words</p>
-                        {[BIP39DisplayOption.ONLY_FIRST_4_LETTERS, BIP39DisplayOption.FULL].map((option) => (
+                    <div className="flex flex-wrap items-center gap-x-1.5">
+                        <p>For words</p>
+                        {[BIP39DisplayOption.FULL, BIP39DisplayOption.ONLY_FIRST_4_LETTERS].map((option) => (
                             <button
                                 key={option}
                                 className={cn('py-0.5 px-2 bg-very-light-hover rounded-md hover:bg-light-hover', {
@@ -83,11 +89,14 @@ export default function Page() {
                                 {option}
                             </button>
                         ))}
+                        <LinkWrapper href="https://cryptotag.io/blog/why-do-i-only-need-the-first-4-letters-of-a-bip39-seed/" target="_blank">
+                            <IconWrapper icon={IconIds.CARBON_HELP} className="h-3.5 w-3.5 cursor-alias text-inactive hover:text-primary" />
+                        </LinkWrapper>
                     </div>
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">Output ⬇️</p>
+                <p className="text-base font-bold text-secondary">Output to save ⬇️</p>
                 <p className="text-inactive">
                     <span className="hidden lg:flex">in A4 format</span>
                     <span className="lg:hidden">See on desktop</span>
@@ -106,9 +115,8 @@ export default function Page() {
                 </div>
                 <div className="w-full">
                     <p className="mb-1 text-xs">
-                        BIP39 words with shift={shiftToNWordsInList} on word position in list coupled with shift={} on letter index in alphabet
-                        (shift=
-                        {shiftToNLetters})
+                        BIP39 words with shift={shiftToNWordsInList} on word position in list coupled with shift={shiftToNLetters} on letters of
+                        alphabet
                     </p>
                 </div>
                 {bip0039Words.slice((currentPage - 1) * 1024, currentPage * 1024).map((word, wordIndex) => (
@@ -127,7 +135,11 @@ export default function Page() {
                             {shiftToNLetters !== 0 && (
                                 <>
                                     <p className="text-inactive">-</p>
-                                    <p className="text-secondary">{displayWord(rotN(word, shiftToNLetters))}</p>
+                                    <p className="text-secondary">
+                                        {displayWord(
+                                            rotN(rotBip0039WordIndex(1024 * (currentPage - 1) + wordIndex, shiftToNWordsInList), shiftToNLetters),
+                                        )}
+                                    </p>
                                 </>
                             )}
                         </div>

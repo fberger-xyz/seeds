@@ -15,6 +15,7 @@ export enum IconIds {
     CARBON_CLOUD_UPLOAD = 'carbon:cloud-upload',
     CARBON_REPORT = 'carbon:report-data',
     CARBON_ARROW_RIGHT = 'carbon:arrow-right',
+    CARBON_HELP = 'carbon:help',
 
     // ic
     IC_OUTLINE_CALENDAR_MONTH = 'ic:outline-calendar-month',

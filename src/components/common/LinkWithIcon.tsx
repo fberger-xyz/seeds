@@ -6,7 +6,7 @@ export default function LinkWithIcon({ children, href }: { href: string; childre
     return (
         <LinkWrapper
             href={href}
-            className="group flex w-fit items-center gap-2 rounded-md bg-very-light-hover px-1 text-secondary hover:bg-light-hover hover:text-primary"
+            className="group flex w-fit items-center gap-1 rounded-md underline decoration-inactive underline-offset-4 hover:decoration-primary"
             target="_blank"
         >
             {children}
