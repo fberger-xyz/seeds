@@ -19,17 +19,17 @@ export default function Page() {
     return (
         <PageWrapper className="gap-3">
             <div className="flex flex-col gap-3 text-sm">
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">1. Color code</p>
+                <p className="text-base font-bold underline decoration-inactive underline-offset-2">1. How to read</p>
                 <div className="flex flex-col gap-0.5 pl-2">
                     <div className="flex flex-wrap items-center gap-1">
                         <p className="text-inactive">a. Index of word in</p>
                         <LinkWithIcon href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">
-                            <p className="text-nowrap">BIP 39 list</p>
+                            <p className="text-nowrap text-inactive hover:text-default">BIP39 list</p>
                         </LinkWithIcon>
                     </div>
                     <p className="text-default">b. Word</p>
                     <div className="flex flex-wrap items-center gap-x-2">
-                        <p className="text-primary">c. Rot on word index in BIP 39 list</p>
+                        <p className="text-primary">c. Rot on word position in BIP39 list</p>
                         <input
                             type="number"
                             onChange={(e) => {
@@ -63,10 +63,10 @@ export default function Page() {
                         <p className="text-inactive">[ min -26 ; default 0 ; max 26 ]</p>
                     </div>
                 </div>
-                <p className="text-base font-bold underline decoration-inactive underline-offset-2">2. Options</p>
+                <p className="text-base font-bold underline decoration-inactive underline-offset-2">2. Display</p>
                 <div className="flex flex-col gap-0.5 pl-2">
                     <div className="flex flex-wrap items-center gap-x-2">
-                        <p>Display words</p>
+                        <p>Words</p>
                         {[BIP39DisplayOption.ONLY_FIRST_4_LETTERS, BIP39DisplayOption.FULL].map((option) => (
                             <button
                                 key={option}
@@ -103,8 +103,8 @@ export default function Page() {
                 </div>
                 <div className="w-full">
                     <p className="mb-1 text-xs">
-                        BIP39 words with rot on word position in list (shift={shiftToNWordsInList}) coupled with rot on letter index in alphabet
-                        (shift={shiftToNLetters})
+                        BIP39 with rot on word position in list (shift={shiftToNWordsInList}) coupled with rot on letter index in alphabet (shift=
+                        {shiftToNLetters})
                     </p>
                 </div>
                 {bip0039Words.slice((currentPage - 1) * 1024, currentPage * 1024).map((word, wordIndex) => (

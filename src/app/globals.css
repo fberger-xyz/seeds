@@ -23,3 +23,8 @@ html.dark {
     --color-very-light-hover: #111827;
     --color-light-border: #374151;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+   opacity: 1;
+}
