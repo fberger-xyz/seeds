@@ -24,9 +24,11 @@ export default function Page() {
                 <div className="flex flex-col text-sm">
                     <p className="text-base font-bold text-secondary">Context</p>
                     <div className="flex flex-wrap items-center gap-1">
-                        <p>This page aims to help you encrypt your seed phrase with a simple substitution cipher method 🕵️</p>
+                        <p className="text-xs md:text-sm">
+                            This page aims to help you encrypt your seed phrase with a simple substitution cipher method 🕵️
+                        </p>
                         <LinkWrapper href="https://en.wikipedia.org/wiki/Substitution_cipher" target="_blank">
-                            <IconWrapper icon={IconIds.CARBON_HELP} className="mb-1 size-4 cursor-alias text-inactive hover:text-primary" />
+                            <IconWrapper icon={IconIds.CARBON_HELP} className="mb-1 size-4 cursor-alias text-secondary hover:text-primary" />
                         </LinkWrapper>
                     </div>
                 </div>
@@ -49,7 +51,7 @@ export default function Page() {
                             value={shiftToNWordsInList}
                             min={-2048}
                             max={2048}
-                            className="h-5 w-12 rounded-md bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
+                            className="h-5 w-12 rounded-md bg-very-light-hover text-center text-primary hover:bg-light-hover"
                         />
                         <p className="text-xs text-inactive">[ min -2048 ; default 0 ; max 2048 ]</p>
                     </div>
@@ -68,7 +70,7 @@ export default function Page() {
                             value={shiftToNLetters}
                             min={-26}
                             max={26}
-                            className="h-5 w-12 rounded-md bg-very-light-hover text-center hover:bg-light-hover focus:text-primary"
+                            className="h-5 w-12 rounded-md bg-very-light-hover text-center text-primary hover:bg-light-hover"
                         />
                         <p className="text-xs text-inactive">[ min -26 ; default 0 ; max 26 ]</p>
                     </div>
@@ -79,8 +81,8 @@ export default function Page() {
                                 <button
                                     key={option}
                                     className={cn('px-2 bg-very-light-hover rounded-md hover:bg-light-hover', {
-                                        'font-bold': onlyShowFirst4Letters === option,
-                                        'opacity-40': onlyShowFirst4Letters !== option,
+                                        'font-bold text-primary': onlyShowFirst4Letters === option,
+                                        'opacity-80': onlyShowFirst4Letters !== option,
                                     })}
                                     onClick={() => actions.setOnlyShowFirst4Letters(option)}
                                 >
@@ -88,7 +90,7 @@ export default function Page() {
                                 </button>
                             ))}
                             <LinkWrapper href="https://cryptotag.io/blog/why-do-i-only-need-the-first-4-letters-of-a-bip39-seed/" target="_blank">
-                                <IconWrapper icon={IconIds.CARBON_HELP} className="size-4 cursor-alias text-inactive hover:text-primary" />
+                                <IconWrapper icon={IconIds.CARBON_HELP} className="size-4 cursor-alias text-secondary hover:text-primary" />
                             </LinkWrapper>
                         </div>
                     </div>
@@ -120,8 +122,8 @@ export default function Page() {
                 </div>
                 <div className="w-full">
                     <p className="mb-1 text-xs">
-                        BIP39 words with {shiftToNWordsInList} shift{Math.abs(shiftToNWordsInList) > 1 ? 's' : ''} on word position in list coupled
-                        with {shiftToNLetters} shift{Math.abs(shiftToNLetters) > 1 ? 's' : ''} on letters of alphabet
+                        BIP39 words with {shiftToNWordsInList} shift{Math.abs(shiftToNWordsInList) > 1 ? 's' : ''} on word position in list +
+                        {shiftToNLetters} shift{Math.abs(shiftToNLetters) > 1 ? 's' : ''} on letters of alphabet
                     </p>
                     <p className="mb-1 w-fit border border-default p-1 text-2xs">
                         <span className="px-0.5 text-inactive">index</span>
