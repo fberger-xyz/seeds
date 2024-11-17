@@ -25,7 +25,7 @@ export default function Page() {
                     <p className="text-base font-bold text-secondary">Context</p>
                     <div className="flex flex-wrap items-center gap-1">
                         <p className="text-xs md:text-sm">
-                            This page aims to help you encrypt your seed phrase with a simple substitution cipher method 🕵️
+                            This page aims to help you encrypt your seed phrase with a simple substitution cipher method
                         </p>
                         <LinkWrapper href="https://en.wikipedia.org/wiki/Substitution_cipher" target="_blank">
                             <IconWrapper icon={IconIds.CARBON_HELP} className="mb-1 size-4 cursor-alias text-secondary hover:text-primary" />
