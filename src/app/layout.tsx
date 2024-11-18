@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Nunito_Sans } from 'next/font/google'
+import { Lato } from 'next/font/google'
 import './globals.css'
 import { APP_METADATA } from '../config/app.config'
 import { cn } from '../utils'
@@ -11,7 +11,7 @@ import { AppThemes } from '@/enums'
 import { Toaster } from 'react-hot-toast'
 
 // https://fonts.google.com/
-const font = Nunito_Sans({ weight: ['400', '700'], subsets: ['latin'] })
+const font = Lato({ weight: ['400', '700'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
     // title: `${APP_METADATA.SITE_NAME} | ${APP_METADATA.SITE_AUTHOR}`,
