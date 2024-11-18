@@ -158,10 +158,18 @@ export default function Page() {
                     <p className="mb-1 w-fit border border-default p-1 text-2xs">
                         <span className="px-0.5 text-inactive">index</span>
                         <span className="px-0.5 text-default">BIP39 word</span>
-                        <span className="px-0.5">+</span>
-                        <span className="px-0.5 text-primary">{shiftToNWordsInList} shift in list</span>
-                        <span className="px-0.5">+</span>
-                        <span className="px-0.5 text-secondary">{shiftToNLetters} on letters</span>
+                        {shiftToNWordsInList > 0 && (
+                            <>
+                                <span className="px-0.5">+</span>
+                                <span className="px-0.5 text-primary">{shiftToNWordsInList} shift in list</span>
+                            </>
+                        )}
+                        {shiftToNLetters > 0 && (
+                            <>
+                                <span className="px-0.5">+</span>
+                                <span className="px-0.5 text-secondary">{shiftToNLetters} on letters</span>
+                            </>
+                        )}
                         {reverseWord === 'Yes' && (
                             <>
                                 <span className="px-0.5">+</span>
