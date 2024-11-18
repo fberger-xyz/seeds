@@ -85,7 +85,7 @@ export default function Page() {
                     <div className="flex flex-col gap-0.5 pl-2">
                         <div className="flex flex-wrap items-center gap-x-1.5 text-xs md:text-sm">
                             <p>&#x2022; Reverse words</p>
-                            {['Yes', 'No'].map((option) => (
+                            {['No', 'Yes'].map((option) => (
                                 <button
                                     key={option}
                                     className={cn('px-2 bg-very-light-hover rounded-md hover:bg-light-hover', {
