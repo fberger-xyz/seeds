@@ -15,8 +15,10 @@ import toast from 'react-hot-toast'
 
 export default function Page() {
     const A4Ref = useRef<HTMLDivElement>(null)
-    const { currentPage, shiftToNWordsInList, shiftToNLetters, onlyShowFirst4Letters, actions } = useRotBip39Store()
-    const displayWord = (word: string) => word.slice(0, onlyShowFirst4Letters === BIP39DisplayOption.ONLY_FIRST_4_LETTERS ? 4 : word.length)
+    const { currentPage, shiftToNWordsInList, shiftToNLetters, onlyShowFirst4Letters, reverseWord, actions } = useRotBip39Store()
+    const displayWord = (word: string) => {
+        return word.slice(0, onlyShowFirst4Letters === BIP39DisplayOption.ONLY_FIRST_4_LETTERS ? 4 : word.length)
+    }
     return (
         <PageWrapper className="gap-3">
             <div className="flex flex-col gap-5 text-sm">
@@ -36,6 +38,8 @@ export default function Page() {
                 {/* 2 */}
                 <div className="flex flex-col gap-1 text-sm">
                     <p className="text-base font-bold text-secondary">Inputs</p>
+
+                    {/* option */}
                     <div className="flex flex-wrap items-center gap-x-2 pl-2 text-xs md:text-sm">
                         <p>&#x2022; Number of shift to apply on word position in list {'=>'}</p>
                         <input
@@ -55,6 +59,8 @@ export default function Page() {
                         />
                         <p className="text-xs text-inactive">[ min -2048 ; default 0 ; max 2048 ]</p>
                     </div>
+
+                    {/* option */}
                     <div className="flex flex-wrap items-center gap-x-2 pl-2 text-xs md:text-sm">
                         <p>&#x2022; Number of shift to apply on letters of the word {'=>'}</p>
                         <input
@@ -74,6 +80,30 @@ export default function Page() {
                         />
                         <p className="text-xs text-inactive">[ min -26 ; default 0 ; max 26 ]</p>
                     </div>
+
+                    {/* option */}
+                    <div className="flex flex-col gap-0.5 pl-2">
+                        <div className="flex flex-wrap items-center gap-x-1.5 text-xs md:text-sm">
+                            <p>&#x2022; Reverse words</p>
+                            {['Yes', 'No'].map((option) => (
+                                <button
+                                    key={option}
+                                    className={cn('px-2 bg-very-light-hover rounded-md hover:bg-light-hover', {
+                                        'font-bold text-primary': reverseWord === option,
+                                        'opacity-80': reverseWord !== option,
+                                    })}
+                                    onClick={() => actions.setReverseWord(option as 'Yes' | 'No')}
+                                >
+                                    {option}
+                                </button>
+                            ))}
+                            <LinkWrapper href="https://cryptotag.io/blog/why-do-i-only-need-the-first-4-letters-of-a-bip39-seed/" target="_blank">
+                                <IconWrapper icon={IconIds.CARBON_HELP} className="size-4 cursor-alias text-secondary hover:text-primary" />
+                            </LinkWrapper>
+                        </div>
+                    </div>
+
+                    {/* option */}
                     <div className="flex flex-col gap-0.5 pl-2">
                         <div className="flex flex-wrap items-center gap-x-1.5 text-xs md:text-sm">
                             <p>&#x2022; Display words</p>
@@ -128,8 +158,16 @@ export default function Page() {
                     <p className="mb-1 w-fit border border-default p-1 text-2xs">
                         <span className="px-0.5 text-inactive">index</span>
                         <span className="px-0.5 text-default">BIP39 word</span>
+                        <span className="px-0.5">+</span>
                         <span className="px-0.5 text-primary">{shiftToNWordsInList} shift in list</span>
+                        <span className="px-0.5">+</span>
                         <span className="px-0.5 text-secondary">{shiftToNLetters} on letters</span>
+                        {reverseWord === 'Yes' && (
+                            <>
+                                <span className="px-0.5">+</span>
+                                <span className="px-0.5 text-orange-400">reversed word</span>
+                            </>
+                        )}
                     </p>
                 </div>
                 {bip0039Words.slice((currentPage - 1) * 1024, currentPage * 1024).map((word, wordIndex) => (
@@ -152,6 +190,19 @@ export default function Page() {
                                         {displayWord(
                                             rotN(rotBip0039WordIndex(1024 * (currentPage - 1) + wordIndex, shiftToNWordsInList), shiftToNLetters),
                                         )}
+                                    </p>
+                                </>
+                            )}
+                            {reverseWord === 'Yes' && (
+                                <>
+                                    <p className="text-inactive">-</p>
+                                    <p className="text-orange-400">
+                                        {displayWord(
+                                            rotN(rotBip0039WordIndex(1024 * (currentPage - 1) + wordIndex, shiftToNWordsInList), shiftToNLetters),
+                                        )
+                                            .split('')
+                                            .reverse()
+                                            .join('')}
                                     </p>
                                 </>
                             )}
